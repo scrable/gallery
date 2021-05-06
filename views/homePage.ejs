@@ -1,0 +1,38 @@
+<html>
+<body>
+<link rel="stylesheet" href="/stylesheets/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<div class="grid flexbox">
+    <% if(typeof data == 'object' && data && data.length) {
+    for(var i = data.length - 1; i >= 0; i--) { %>
+        <% var detail = "/imageDetails" + data[i].id %>
+        <div class="grid-item"><a class="homeImg" href="<%= detail %>">
+                <img
+
+                class="lazy"
+                <%console.log("current height: " + heights[i])%>
+                <%if(widths[i] >= 450){%>
+                    <%var wide = 450 / widths[i]%>
+
+                    height="<%= heights[i] * (wide)%>"
+                    width="<%= 450%>"
+                <%}else{%>
+                        <%console.log(heights[i])%>
+                    <%var high = widths[i] / 450%>
+                    height="<%= heights[i] / (high)%>"
+                    width="<%= 450%>"
+                <%}%>
+
+                data-src="<%= "./images/" + data[i] %>"
+                style="" alt="">
+        </a></div>
+    <% }} %>
+</div>
+
+<script src="../javascripts/masonrySource.js"></script>
+<script src="../javascripts/masonry.js"></script>
+<script src="../javascripts/lazyloadSource.js"></script>
+<script src="../javascripts/lazyload.js"></script>
+</body>
+</html>
