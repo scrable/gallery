@@ -6,18 +6,15 @@
 <div class="grid flexbox">
     <% if(typeof data == 'object' && data && data.length) {
     for(var i = data.length - 1; i >= 0; i--) { %>
-        <% var detail = "/imageDetails" + data[i].id %>
-        <div class="grid-item"><a class="homeImg" href="<%= detail %>">
+        <div class="grid-item"><a class="homeImg">
                 <img
 
                 class="lazy"
                 <%if(widths[i] >= 450){%>
                     <%var wide = 450 / widths[i]%>
-
                     height="<%= heights[i] * (wide)%>"
                     width="<%= 450%>"
                 <%}else{%>
-                        <%console.log(heights[i])%>
                     <%var high = widths[i] / 450%>
                     height="<%= heights[i] / (high)%>"
                     width="<%= 450%>"
