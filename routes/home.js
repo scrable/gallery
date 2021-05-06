@@ -4,6 +4,10 @@ exports.list = function(req, res){
      let widths = [];
      const fs = require('fs');
      const files = fs.readdirSync("public/images");
+     files.sort(function(a, b) {
+          return fs.statSync('public/images/' + a).mtime.getTime() -
+              fs.statSync('public/images/' + b).mtime.getTime();
+     });
      const isImage = require('is-image');
 
      for(i = 0; i < files.length; i++){
