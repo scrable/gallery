@@ -1,5 +1,7 @@
 
 `npm install`
 
-Navigate in browser to `localhost:5000` and the app should be available.
+`npm start --port 8997`
+
+Navigate in browser to `localhost:8997` and the app should be available.
 
