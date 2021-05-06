@@ -1,26 +1,30 @@
 
 exports.list = function(req, res){
-     var heights = [];
-     var widths = [];
-     var fs = require('fs');
-     var files = fs.readdirSync("public/images");
+     let heights = [];
+     let widths = [];
+     const fs = require('fs');
+     const files = fs.readdirSync("public/images");
+     const isImage = require('is-image');
 
-     console.log("total files:", files.length, files)
+     for(i = 0; i < files.length; i++){
+          if(!isImage(files[i])){
+               files.splice(i, 1)
+          }
+     }
 
      var sizeOf = require('image-size');
 
-
           function getsizes(path){
-               var y = sizeOf(path)
+               if(isImage(path)) {
+                    var y = sizeOf(path)
 
-               if(parseInt(y.orientation) === 6)
-               {
-                    widths.push(JSON.parse(JSON.stringify(y.height)))
-                    heights.push(JSON.parse(JSON.stringify(y.width)))
-               }
-               else {
-                    heights.push(JSON.parse(JSON.stringify(y.height)))
-                    widths.push(JSON.parse(JSON.stringify(y.width)))
+                    if (parseInt(y.orientation) === 6) {
+                         widths.push(JSON.parse(JSON.stringify(y.height)))
+                         heights.push(JSON.parse(JSON.stringify(y.width)))
+                    } else {
+                         heights.push(JSON.parse(JSON.stringify(y.height)))
+                         widths.push(JSON.parse(JSON.stringify(y.width)))
+                    }
                }
           }
 
