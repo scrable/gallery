@@ -17,6 +17,7 @@ exports.list = function(req, res){
           concurrency: 8,
           width: 450,
           ignore: true,
+          skip: true,
           suffix: ''
      }).then (function() {
           console.log('All done!');
