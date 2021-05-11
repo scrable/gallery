@@ -22,6 +22,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', router);
 
+app.all('*', function(req, res) {
+    res.redirect("/");
+});
+
 app.listen(8997);
 
 module.exports = app;
